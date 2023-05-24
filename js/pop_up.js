@@ -57,3 +57,4 @@ function closePopup() {
             self.close();
         }
     }
+

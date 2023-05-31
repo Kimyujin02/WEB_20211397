@@ -17,7 +17,9 @@ function login(){
     }
     
     if(id.value.length === 0 || password.value.length === 0){
-        alert("아이디와 비밀번호를 모두 입력해주세요.")
+		validateInput(id,password);
+		alert(id,password);
+        alert("아이디와 비밀번호를 모두 입력해주세요.");
     }else{
 		session_set(); // 세션 생성
         form.submit();
@@ -54,6 +56,27 @@ function init() { // 로그인 폼에 쿠키에서 가져온 아이디 입력
     check.checked = true;
   }
 }
+
+
+//추가 코드
+function validateInput(id, password) {
+  // 아이디와 패스워드에 대한 필터링 패턴 설정
+  var idPattern = /^[a-zA-Z0-9]{4,12}$/; // 4~12자의 영문 대소문자와 숫자
+  var passwordPattern = /^[a-zA-Z0-9!@#$%^&*()]{6,16}$/; // 6~16자의 영문 대소문자, 숫자, 특수문자
+
+  if (!idPattern.test(id)) {
+    alert("아이디는 4~12자의 영문 대소문자와 숫자로 입력해야 합니다.");
+    return false;
+  }
+
+  if (!passwordPattern.test(password)) {
+    alert("비밀번호는 6~16자의 영문 대소문자, 숫자, 특수문자로 입력해야 합니다.");
+    return false;
+  }
+
+  return true;
+}
+
 
 function addJavascript(jsname) { // 자바스크립트 외부 연동
 	var th = document.getElementsByTagName('head')[0];
